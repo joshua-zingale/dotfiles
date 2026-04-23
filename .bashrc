@@ -1,6 +1,5 @@
 [ -z "$PS1" ] && return
 
-export PATH="$HOME/.local/bin:$PATH"
 
 if [[ -z $NO_COLOR ]]; then
 	GREEN="\e[32m"
@@ -25,6 +24,7 @@ __add_to_path_if_not_in_path() {
 	[[ $PATH =~ (^|:)${item_to_add}(:|$) ]] || export PATH="$item_to_add:$PATH"
 }
 
+__add_to_path_if_not_in_path "$HOME/.local/bin"
 if [[ -d "$HOME/.bashrc.d" ]]; then
 	for config in "$HOME/.bashrc.d/"*.bash; do
 		[[ -r "$config" ]] && . "$config"
